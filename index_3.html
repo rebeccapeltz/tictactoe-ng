@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-app lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>tic tac toe</title>
+    <style>
+        td.square {
+            width: 100px;
+            height: 100px;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+            border-left: 1px solid #000;
+            border-right: 1px solid #000;
+            text-align: center;
+        }
+        td.winner {
+            background: green;
+            color: white;
+        }
+    </style>
+    <script type="text/javascript">
+    </script>
+</head>
+<p>TIC TAC TOE</p>
+
+<body>
+
+    <div ng-controller="TTTController">
+        <p>Current Player: {{currentPlayer}}</p>
+        <p ng-hide="!gameover">Game over: winner is {{previousWinner}}</p>
+        <p ng-hide="!draw">Game over: no winner it's a draw!</p>
+        <table>
+            <tbody>
+                <tr ng-repeat="row in board track by $index">
+                    <td class="square" ng-repeat="col in row track by $index" ng-click="move(col)" ng-class="{'winner': col.winner}">{{col.token}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="text" name="input" ng-model="N" required ng-trim="true"></input>
+        <button ng-click="setup()">reset board</button>
+    </div>
+
+
+    <script src="angular.min.js"></script>
+    <script src="angular-route.min.js"></script>
+    <script src="app.js"></script>
+
+</body>
+
+</html>
